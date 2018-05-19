@@ -1,0 +1,12 @@
+{
+  "name": "parking_finder",
+  "version": "1.0.0",
+  "description": "You can find bicycle parkings aroud you with this.",
+  "main": "index.js",
+  "repository": "https://github.com/drumgiovanni/parking_finder.git",
+  "author": "drumgiovanni <giovannitheworld@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "create-react-app": "^1.5.2"
+  }
+}

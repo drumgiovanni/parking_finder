@@ -1,0 +1,18 @@
+#appTytle {
+    text-align:center;
+    margin: 30px auto;
+}
+.centerdComponents {
+    text-align:center;
+    margin: 15px auto;
+    font-size:20px;
+}
+#SearchFromName {
+    width:350px;
+    height:100px;
+}
+
+.centerdComponents li {
+    padding-right:60px;   
+    list-style-position: inside;
+}
