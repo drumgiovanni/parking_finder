@@ -39,6 +39,12 @@
     border: 2px solid purple;
     border-radius: 4px;
     margin:25px;
+    overflow:auto;
+}
+
+#ListField li {
+    margin-bottom:10px;
+    font-size:18px;
 }
 #content-wrapper {
     background-color:pink;
