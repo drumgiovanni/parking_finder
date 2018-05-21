@@ -1,12 +1,16 @@
 {
-  "name": "parking_finder",
-  "version": "1.0.0",
-  "description": "You can find bicycle parkings aroud you with this.",
-  "main": "index.js",
-  "repository": "https://github.com/drumgiovanni/parking_finder.git",
-  "author": "drumgiovanni <giovannitheworld@gmail.com>",
-  "license": "MIT",
+  "name": "parking-finder",
+  "version": "0.1.0",
+  "private": true,
   "dependencies": {
-    "create-react-app": "^1.5.2"
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2",
+    "react-scripts": "1.1.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
   }
 }
