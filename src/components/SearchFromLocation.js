@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-import getlocation from './modules/getlocation';
+import getlocation from '../modules/getlocation';
 
 class SearchFromLocation extends Component{
     constructor(props){

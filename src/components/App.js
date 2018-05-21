@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './App.css';
+import '../App.css';
 
 import SearchFromName from './SearchFromName';
 import SearchFromLocation from './SearchFromLocation';
