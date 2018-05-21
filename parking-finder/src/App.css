@@ -7,12 +7,46 @@
     margin: 15px auto;
     font-size:20px;
 }
-#SearchFromName {
-    width:350px;
-    height:100px;
-}
-
 .centerdComponents li {
     padding-right:60px;   
     list-style-position: inside;
+}
+
+
+#SearchFromName {
+    width:350px;
+    height:100px;
+    background-color: lime;
+}
+
+#SearchFromLocation {
+    width:350px;
+    height:100px;
+    background-color: tomato;
+}
+
+#MapField {
+    width:350px;
+    height:350px;
+    border: 2px solid purple;
+    border-radius: 4px;
+    margin:25px;
+}
+
+#ListField {
+    width:350px;
+    height:350px;
+    border: 2px solid purple;
+    border-radius: 4px;
+    margin:25px;
+}
+#content-wrapper {
+    background-color:pink;
+    width:798px;
+    margin: 0px auto;
+    height:400px;
+    display:flex;
+}
+#App {
+    background-color:lightblue;
 }

@@ -1,19 +1,24 @@
 import React, {Component} from 'react';
 
+import getlocation from './modules/getlocation';
+
 class SearchFromLocation extends Component{
     constructor(props){
         super(props);
         this.state = {
-            location:"大阪"
+            
         }
     }
     handleLocSubmit(e){
         e.preventDefault();
-        this.props.onSubmit(this.state.location)
+        
+        this.setState({place: getlocation()})
+        console.log(getlocation())
+        this.props.onSubmit(getlocation())
     }
     render(){
         return (
-            <div class="centerdComponents">
+            <div className="centerdComponents" id="SearchFromLocation">
                 <ul>
                     <li>現在地から探す</li>
                 </ul>

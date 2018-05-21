@@ -15,6 +15,7 @@ class SearchFromName extends Component {
     handleSubmit(e){
         e.preventDefault();
         this.props.onSubmit(this.state.place);
+        this.setState({place:""})
     }
     render(){
         return(
