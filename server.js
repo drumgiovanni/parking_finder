@@ -18,7 +18,7 @@ MongoClient.connect('mongodb://127.0.0.1:27017/testDB', (err,client) => {
     const db = client.db('testDB'); 
     const targetNames = [];
     
-    app.get('api/db', (request, response) => {
+    app.get('/api/db', (request, response) => {
         console.log(request)
         console.log(response)
 
@@ -30,7 +30,7 @@ MongoClient.connect('mongodb://127.0.0.1:27017/testDB', (err,client) => {
                     targetNames.push(targetData.name);
                 }); 
                 if (error) response.status(500).send(error)
-                else resonse.status(200).send(targetNames)
+                else response.status(200).send(targetNames)
             });
         });
     })
