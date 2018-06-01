@@ -19,15 +19,11 @@ MongoClient.connect('mongodb://127.0.0.1:27017/testDB', (err,client) => {
     const targetNames = [];
     
     app.get('/api/db', (request, response) => {
-        console.log(request)
-        console.log(response)
-
         db.collection('alldatas', (error, collection) => {
-           
              collection.find().toArray((error, documents) => {
                 documents.forEach(targetData => {
-                    console.log(targetData.name);
-                    targetNames.push(targetData.name);
+                    console.log(targetData);
+                    targetNames.push(targetData);
                 }); 
                 if (error) response.status(500).send(error)
                 else response.status(200).send(targetNames)

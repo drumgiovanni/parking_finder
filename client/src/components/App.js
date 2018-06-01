@@ -12,7 +12,7 @@ class App extends Component {
             place: "",
             lng: 135.5041171,
             lat: 34.6524992,
-            parkings: "",
+            parkings: [],
         }
     }
     
@@ -29,13 +29,14 @@ class App extends Component {
 
     }
 
-    componentDidMount(){
+    componentWillMount(){
         fetch('api/db', {accept: "application/json" })
-        .then(response => {console.log(response)})
+        .then(response =>  response.json() )
+        .then(text => {
+            return this.setState({parkings: text})})
         .catch(err => {
             console.log(err)
         });
-        console.log('parkings: ', this.state.parkings );
     }
     render() {
         return (
