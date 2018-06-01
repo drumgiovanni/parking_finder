@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import '../App.css';
-
 import SearchFromName from './SearchFromName';
 import SearchFromLocation from './SearchFromLocation';
 import MapField from './MapField';
@@ -11,14 +10,16 @@ class App extends Component {
         super(props);
         this.state = {
             place: "",
-            lng: "",
-            lat: "",
+            lng: 135.5041171,
+            lat: 34.6524992,
+            parkings: "",
         }
     }
     
-    getPlace(place){
-        this.setState( {place} );
-        console.log('place:', place)
+    getPlace(lat, lng){
+        this.setState( {lat: lat, lng: lng} );
+        console.log('lat: ', lat);
+        console.log('lng: ', lng);
     }
 
     getLocation(lat, lng){
@@ -27,15 +28,27 @@ class App extends Component {
         console.log('lng: ', lng);
 
     }
+
+    componentDidMount(){
+        fetch('api/db', {accept: "application/json" })
+        .then(response => {console.log(response)})
+        .catch(err => {
+            console.log(err)
+        });
+        console.log('parkings: ', this.state.parkings );
+    }
     render() {
         return (
             <div id='App'>
                 <h1 id="appTytle">駐輪場Finder</h1>
-                <SearchFromName onSubmit={place => this.getPlace(place)} />
+                <SearchFromName onSubmit={(lat,lng) => this.getPlace(lat,lng)} />
                 <SearchFromLocation onSubmit={(lat, lng) => this.getLocation(lat, lng)} />
                 <div id="content-wrapper">
-                    <MapField />
-                    <ListField />
+                    <MapField
+                        lat={this.state.lat}
+                        lng={this.state.lng}
+                    />
+                    <ListField parkings={this.state.parkings}/>
                 </div>
             </div> 
         );
