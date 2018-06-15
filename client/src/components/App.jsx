@@ -48,7 +48,6 @@ class App extends Component {
                     <MapField
                         lat={this.state.lat}
                         lng={this.state.lng}
-                        parkings={this.state.parkings}
                     />
                     <ListField parkings={this.state.parkings}/>
                 </div>

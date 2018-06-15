@@ -2,6 +2,7 @@
 yarn-error.log*
 yarn-debug.log*
 /node_modules
+index.html
 /build
 .env.local
 .env.development.local

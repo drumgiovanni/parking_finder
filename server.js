@@ -15,14 +15,13 @@ app.use(bodyParser.json())
 MongoClient.connect('mongodb://127.0.0.1:27017/testDB', (err,client) => {
     assert.equal(null, err);
     console.log("Connected to DB");
-    const db = client.db('testDB'); 
+    const db = client.db('realDB'); 
     const targetNames = [];
     
     app.get('/api/db', (request, response) => {
         db.collection('alldatas', (error, collection) => {
              collection.find().toArray((error, documents) => {
                 documents.forEach(targetData => {
-                    console.log(targetData);
                     targetNames.push(targetData);
                 }); 
                 if (error) response.status(500).send(error)
