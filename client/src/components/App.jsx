@@ -5,7 +5,7 @@ import SearchFromLocation from './SearchFromLocation';
 import MapField from './MapField';
 import ListField from './ListField';
 import geolib from 'geolib';
-
+import _ from 'lodash';
 class App extends Component {
     constructor(props) {
         super(props);
@@ -20,16 +20,19 @@ class App extends Component {
     getData() {
     fetch('api/db', {accept: "application/json" })
         .then(response =>  response.json() )
-        .then(text => {
-            text.forEach(item => {
+        .then(data => {
+            const fixedData = [];
+            data.forEach(item => {
                const distance = geolib.getDistance(
                     { latitude:this.state.lat ,longitude:this.state.lng },
                     { latitude:item.lat ,longitude:item.lng }
                 )
                 item['distance'] = distance;
-                console.log(item)
+                fixedData.push(item)
             })
-            this.setState({ parkings: text })
+            const sortedData = (data, distance)=> _.sortBy(data, d => d[distance]);
+            console.log(typeof sortedData);
+            this.setState({ parkings: sortedData(fixedData, 'distance') })
         })
         .catch(err => {
             console.log(err)
@@ -60,7 +63,6 @@ class App extends Component {
 
     componentWillMount(){
         this.fetchGeo();
-        
     }
 
     render() {

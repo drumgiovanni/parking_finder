@@ -7,13 +7,11 @@ class SearchFromName extends Component {
         super(props);
         this.state={
             place:"",
-			lng: 135.5041171,
-            lat: 34.6524992,
         };
     }
 
     handlePlaceChanged(place){
-        this.setState( {place} );
+        this.setState({ place });
     };
 
     handleSubmit(e){
