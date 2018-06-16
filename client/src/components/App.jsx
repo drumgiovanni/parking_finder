@@ -31,7 +31,6 @@ class App extends Component {
                 fixedData.push(item)
             })
             const sortedData = (data, distance)=> _.sortBy(data, d => d[distance]);
-            console.log(typeof sortedData);
             this.setState({ parkings: sortedData(fixedData, 'distance') })
         })
         .catch(err => {

@@ -1,7 +1,6 @@
 import React from 'react';
 import { withGoogleMap, GoogleMap, Marker, withScriptjs } from 'react-google-maps';
 import API_KEY from './env'
-console.log(API_KEY);
 
 const InnerMap = withScriptjs(withGoogleMap(props => 
   <GoogleMap
@@ -10,7 +9,11 @@ const InnerMap = withScriptjs(withGoogleMap(props =>
     center={ props.position }
   >
   <Marker position={props.position} />
+  {props.parkings.map((item, i) => 
+        <Marker key={i} position={{ lat: item.lat, lng: item.lng }} options={{ icon: 'icon/parking.png' }} />
+  )}    
   </GoogleMap>
+      
 ));
 
 const MapField = (props) => (

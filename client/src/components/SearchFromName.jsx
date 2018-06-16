@@ -6,7 +6,9 @@ class SearchFromName extends Component {
     constructor(props) {
         super(props);
         this.state={
-            place:"",
+            place: "",
+            lat: props.lat,
+            lng: props.lng
         };
     }
 
@@ -18,7 +20,6 @@ class SearchFromName extends Component {
         e.preventDefault();
         axios.get(GEOCODE_ENDPOINT, {params: { address: this.state.place }})
 			.then(results => {
-				console.log(results);
 				const data = results.data;
 				switch (data.status) {
 					case 'OK': {
@@ -27,6 +28,8 @@ class SearchFromName extends Component {
 							lat: result.lat,
 							lng: result.lng
 						});
+                        this.props.onSubmit(this.state.lat, this.state.lng);
+
 						break;
 					}
 					case 'ZERO_RESULTS': {
@@ -51,7 +54,6 @@ class SearchFromName extends Component {
 						});
 			});
 
-        this.props.onSubmit(this.state.lat, this.state.lng);
         this.setState({place:""})
     }
     render(){
