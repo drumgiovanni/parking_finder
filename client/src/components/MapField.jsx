@@ -7,17 +7,18 @@ const InnerMap = withGoogleMap(props => (
     defaultCenter={ props.position }
     center={ props.position }
   >
-    {props.isMarkerShown && <Marker position={ props.position } />}
+    {props.isMarkerShown && <Marker position={props.position} />  }
   </GoogleMap>
 ));
 
-const MapField = ({lat, lng}) => (
+const MapField = (props) => (
    // eslint-disable-next-line
     <InnerMap 
         isMarkerShown
         containerElement={<div style={{ height: `364px`, width: `364px`, margin: `25px` }} />}
         mapElement={<div style={{ height: `100%` }}/>}
-        position={ {lat: lat, lng: lng} }
+        position={ {lat: props.lat, lng: props.lng} }
+        parkings={props.parkings}
     />
 );
 

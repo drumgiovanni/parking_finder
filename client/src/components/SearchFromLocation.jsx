@@ -22,7 +22,6 @@ class SearchFromLocation extends Component{
                     const lat = data.latitude ;
                     const lng = data.longitude ;
                     this.setState({lng: lng, lat: lat});
-                    console.log(this.state);
                     this.props.onSubmit(this.state.lat, this.state.lng);
                     return {"lng": lng, "lat": lat}
     /*

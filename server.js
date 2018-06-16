@@ -12,7 +12,7 @@ app.set("port", process.env.PORT || 8000)
 app.use(bodyParser.urlencoded({extended: true }))
 app.use(bodyParser.json())
 
-MongoClient.connect('mongodb://127.0.0.1:27017/testDB', (err,client) => {
+MongoClient.connect('mongodb://127.0.0.1:27017/realDB', (err,client) => {
     assert.equal(null, err);
     console.log("Connected to DB");
     const db = client.db('realDB'); 

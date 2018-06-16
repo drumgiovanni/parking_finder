@@ -4,40 +4,65 @@ import SearchFromName from './SearchFromName';
 import SearchFromLocation from './SearchFromLocation';
 import MapField from './MapField';
 import ListField from './ListField';
+import geolib from 'geolib';
 
 class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
             place: "",
-            lng: 135.5041171,
-            lat: 34.6524992,
+            lng: 0,
+            lat: 0,
             parkings: [],
         }
     }
     
-    getPlace(lat, lng){
-        this.setState( {lat: lat, lng: lng} );
-        console.log('lat: ', lat);
-        console.log('lng: ', lng);
-    }
-
-    getLocation(lat, lng){
-        this.setState( {lat: lat, lng: lng} );
-        console.log('lat: ', lat);
-        console.log('lng: ', lng);
-
-    }
-
-    componentWillMount(){
-        fetch('api/db', {accept: "application/json" })
+    getData() {
+    fetch('api/db', {accept: "application/json" })
         .then(response =>  response.json() )
         .then(text => {
-            return this.setState({parkings: text})})
+            text.forEach(item => {
+               const distance = geolib.getDistance(
+                    { latitude:this.state.lat ,longitude:this.state.lng },
+                    { latitude:item.lat ,longitude:item.lng }
+                )
+                item['distance'] = distance;
+                console.log(item)
+            })
+            this.setState({ parkings: text })
+        })
         .catch(err => {
             console.log(err)
         });
     }
+
+    getPlace(lat, lng){
+        this.setState( {lat: lat, lng: lng} );
+        this.getData();
+    }
+
+    getLocation(lat, lng){
+        this.setState( {lat: lat, lng: lng} );
+        this.getData();
+    }
+
+    fetchGeo(){
+        if ( navigator.geolocation ){
+            navigator.geolocation.getCurrentPosition( position => {
+                const data = position.coords ;
+                const lat = data.latitude ;
+                const lng = data.longitude ;
+                this.setState({lng: lng, lat: lat});
+                return {lng: lng, lat: lat};
+            })
+        }
+    }
+
+    componentWillMount(){
+        this.fetchGeo();
+        
+    }
+
     render() {
         return (
             <div id='App'>
@@ -48,6 +73,7 @@ class App extends Component {
                     <MapField
                         lat={this.state.lat}
                         lng={this.state.lng}
+                        parkings={this.state.parkings}
                     />
                     <ListField parkings={this.state.parkings}/>
                 </div>
