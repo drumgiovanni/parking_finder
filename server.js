@@ -8,7 +8,7 @@ const MongoClient = mongodb.MongoClient;
 require('dotenv').config();
 
 const app = express();
-
+console.log(process.env.MONGODB_URI)
 app.set("port", process.env.PORT || 8000);
 app.use(bodyParser.urlencoded({extended: true }));
 app.use(bodyParser.json());
