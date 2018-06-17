@@ -18,6 +18,7 @@ const InnerMap = withScriptjs(withGoogleMap(props =>
 
 const MapField = (props) => (
    // eslint-disable-next-line
+    <div>
     <InnerMap 
         googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${API_KEY}`}
         containerElement={<div style={{ height: `364px`, width: `364px`, margin: `25px` }} />}
@@ -26,6 +27,7 @@ const MapField = (props) => (
         position={ {lat: props.lat, lng: props.lng} }
         parkings={props.parkings}
     />
+    </div>
 );
 
 export default MapField; 

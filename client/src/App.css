@@ -16,13 +16,13 @@
 #SearchFromName {
     width:350px;
     height:100px;
-    background-color: lime;
-}
+    border: 2px solid green;
+}   
 
 #SearchFromLocation {
     width:350px;
     height:100px;
-    background-color: tomato;
+    border: 2px solid green;
 }
 
 #MapField {
@@ -47,12 +47,14 @@
     font-size:18px;
 }
 #content-wrapper {
-    background-color:pink;
     width:798px;
     margin: 0px auto;
     height:400px;
     display:flex;
+    border: 2px solid green;
 }
 #App {
     background-color:lightblue;
+    width:910px;
+    height:800px;
 }

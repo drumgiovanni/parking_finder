@@ -1,6 +1,7 @@
 import express from 'express';
 import mongodb from 'mongodb';
 import assert from 'assert';
+import path from 'path';
 import bodyParser from 'body-parser';
 import fs from 'fs';
 const MongoClient = mongodb.MongoClient;
@@ -12,6 +13,7 @@ app.set("port", process.env.PORT || 8000);
 app.use(bodyParser.urlencoded({extended: true }));
 app.use(bodyParser.json());
 app.use(express.static(__dirname + '/icon'));
+app.use(express.static(path.join(__dirname, 'client/build')));
 MongoClient.connect('mongodb://127.0.0.1:27017/realDB', (err,client) => {
     assert.equal(null, err);
     console.log("Connected to DB");

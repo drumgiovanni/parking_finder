@@ -10,7 +10,8 @@ class ListField extends Component{
     render(){
     return (
         <div id="ListField">
-            <ul>
+        <p>    [駐輪場一覧]</p>   
+        <ul>
         {this.props.parkings.map((item, i) => 
             <li key={i}><a href={item.url}>{i} {item.name}</a></li>
         )}  
