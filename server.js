@@ -5,7 +5,7 @@ import path from 'path';
 import bodyParser from 'body-parser';
 import fs from 'fs';
 const MongoClient = mongodb.MongoClient;
-
+require('dotenv').config();
 
 const app = express();
 
@@ -14,7 +14,7 @@ app.use(bodyParser.urlencoded({extended: true }));
 app.use(bodyParser.json());
 app.use(express.static(__dirname + '/icon'));
 app.use(express.static(path.join(__dirname, 'client/build')));
-MongoClient.connect('mongodb://127.0.0.1:27017/realDB', (err,client) => {
+MongoClient.connect(process.env.MONGODB_URI, (err,client) => {
     assert.equal(null, err);
     console.log("Connected to DB");
     const db = client.db('realDB'); 
