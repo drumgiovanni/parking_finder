@@ -14,7 +14,7 @@ app.use(bodyParser.urlencoded({extended: true }));
 app.use(bodyParser.json());
 app.use(express.static(__dirname + '/icon'));
 app.use(express.static(path.join(__dirname, 'client/build')));
-MongoClient.connect(process.env.MONGODB_URI, (err,client) => {
+MongoClient.connect('mongodb://admin:admin1111@ds163510.mlab.com:63510/heroku_qqnlrrsg', (err,client) => {
     assert.equal(null, err);
     const db = client.db('realDB'); 
     const targetNames = [];
