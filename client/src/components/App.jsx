@@ -23,7 +23,7 @@ class App extends Component {
             .then(response =>  {
                 return response.json()} )
             .then(data => {
-                const fixedData = [];
+                let fixedData = [];
                 data.forEach(item => {
                    const distance = geolib.getDistance(
                         { latitude:this.state.lat ,longitude:this.state.lng },
@@ -34,6 +34,7 @@ class App extends Component {
                 })
                 const sortedData = (data, distance)=> _.sortBy(data, d => d[distance]);
                 this.setState({ parkings: sortedData(fixedData, 'distance') })
+                fixedData = [];
             })
             .catch(err => {
                 console.log(err)

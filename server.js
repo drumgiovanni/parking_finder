@@ -18,9 +18,9 @@ app.use(express.static(path.join(__dirname, 'client/build')));
 MongoClient.connect('mongodb://admin:admin1111@ds163510.mlab.com:63510/heroku_qqnlrrsg', (err,client) => {
     assert.equal(null, err);
     const db = client.db('heroku_qqnlrrsg'); 
-    const targetNames = [];
 
     app.get('/api/db', (request, response) => {
+        const targetNames = [];
         db.collection('alldatas', (error, collection) => {
              collection.find().toArray((error, documents) => {
                 console.log(documents)
