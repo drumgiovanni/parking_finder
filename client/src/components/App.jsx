@@ -6,6 +6,7 @@ import MapField from './MapField';
 import ListField from './ListField';
 import geolib from 'geolib';
 import _ from 'lodash';
+
 class App extends Component {
     constructor(props) {
         super(props);
@@ -18,24 +19,25 @@ class App extends Component {
     }
     
     getData() {
-    fetch('api/db', {accept: "application/json" })
-        .then(response =>  response.json() )
-        .then(data => {
-            const fixedData = [];
-            data.forEach(item => {
-               const distance = geolib.getDistance(
-                    { latitude:this.state.lat ,longitude:this.state.lng },
-                    { latitude:item.lat ,longitude:item.lng }
-                )
-                item['distance'] = distance;
-                fixedData.push(item)
+        fetch('/api/db', {accept: "application/json" })
+            .then(response =>  {
+                return response.json()} )
+            .then(data => {
+                const fixedData = [];
+                data.forEach(item => {
+                   const distance = geolib.getDistance(
+                        { latitude:this.state.lat ,longitude:this.state.lng },
+                        { latitude:item.lat ,longitude:item.lng }
+                    )
+                    item['distance'] = distance;
+                    fixedData.push(item)
+                })
+                const sortedData = (data, distance)=> _.sortBy(data, d => d[distance]);
+                this.setState({ parkings: sortedData(fixedData, 'distance') })
             })
-            const sortedData = (data, distance)=> _.sortBy(data, d => d[distance]);
-            this.setState({ parkings: sortedData(fixedData, 'distance') })
-        })
-        .catch(err => {
-            console.log(err)
-        });
+            .catch(err => {
+                console.log(err)
+            });
     }
 
     getPlace(lat, lng){

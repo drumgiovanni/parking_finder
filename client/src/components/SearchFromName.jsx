@@ -62,7 +62,7 @@ class SearchFromName extends Component {
                 <ul>
                     <li>地名から探す</li>
                 </ul>
-                <form onSubmit={(e) => this.handleSubmit(e)}>
+                <form className="subform" onSubmit={(e) => this.handleSubmit(e)}>
                     <input type="text" value={this.state.place} onChange={(e) => this.handlePlaceChanged(e.target.value)} />
                     <input type="submit" value="検索" />
                 </form>

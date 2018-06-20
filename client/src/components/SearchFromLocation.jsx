@@ -24,22 +24,7 @@ class SearchFromLocation extends Component{
                     this.setState({lng: lng, lat: lat});
                     this.props.onSubmit(this.state.lat, this.state.lng);
                     return {"lng": lng, "lat": lat}
-    /*
-                    // 位置情報
-                    const latlng = new google.maps.LatLng( lat , lng ) ;
-
-                    // Google Mapsに書き出し
-                    const map = new google.maps.Map( document.getElementById( 'map-canvas' ) , {
-                        zoom: 15 ,				// ズーム値
-                        center: latlng ,		// 中心座標 [latlng]
-                    } ) ;
-
-                    // マーカーの新規出力
-                    new google.maps.Marker( {
-                        map: map ,
-                        position: latlng ,
-                    } ) ;
-    */                
+                
                 },
 
                 // [第2引数] 取得に失敗した場合の関数
@@ -82,7 +67,7 @@ class SearchFromLocation extends Component{
                 <ul>
                     <li>現在地から探す</li>
                 </ul>
-                <form　onSubmit={e => this.handleLocSubmit(e)}>
+                <form　className="subform" onSubmit={e => this.handleLocSubmit(e)}>
                     <input type="submit" value="現在地から検索" />
                 </form>
             </div>

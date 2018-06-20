@@ -4,24 +4,26 @@ import assert from 'assert';
 import path from 'path';
 import bodyParser from 'body-parser';
 import fs from 'fs';
-const MongoClient = mongodb.MongoClient;
 require('dotenv').config();
 
+const MongoClient = mongodb.MongoClient;
 const app = express();
-console.log(process.env.MONGODB_URI)
+
 app.set("port", process.env.PORT || 8000);
 app.use(bodyParser.urlencoded({extended: true }));
 app.use(bodyParser.json());
 app.use(express.static(__dirname + '/icon'));
 app.use(express.static(path.join(__dirname, 'client/build')));
+
 MongoClient.connect('mongodb://admin:admin1111@ds163510.mlab.com:63510/heroku_qqnlrrsg', (err,client) => {
     assert.equal(null, err);
-    const db = client.db('realDB'); 
+    const db = client.db('heroku_qqnlrrsg'); 
     const targetNames = [];
 
     app.get('/api/db', (request, response) => {
         db.collection('alldatas', (error, collection) => {
              collection.find().toArray((error, documents) => {
+                console.log(documents)
                 documents.forEach(targetData => {
                     targetNames.push(targetData);
                 }); 
@@ -35,7 +37,7 @@ MongoClient.connect('mongodb://admin:admin1111@ds163510.mlab.com:63510/heroku_qq
         let buf = fs.readFileSync(__dirname +'/icon/parking.png')
         response.send(buf, {'Content-Type': 'image/png'}, 200)
     })
-    app.get('*', (req, res) => {
+    app.get('/', (req, res) => {
         res.sendFile(path.join(__dirname+'/client/build/index.html'));
     });
     app.listen(app.get("port"), err => {
